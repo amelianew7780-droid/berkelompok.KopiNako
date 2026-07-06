@@ -34,11 +34,14 @@ android {
 }
 
 dependencies {
-    implementation(libs.activity.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.constraintlayout)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.ext.junit)
+    dependencies {
+        implementation("androidx.core:core-ktx:1.12.0")
+        implementation("androidx.appcompat:appcompat:1.6.1")
+        implementation("com.google.android.material:material:1.11.0")
+        implementation("androidx.activity:activity:1.8.2")
+        implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+        // TAMBAHKAN INI:
+        implementation("androidx.cardview:cardview:1.0.0")
+    }
 }

@@ -2,7 +2,7 @@ package com.example.berkelompokkopinako;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.CardView;
+import androidx.cardview.widget.CardView;  // ✅ PERBAIKI INI!
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
