@@ -1,8 +1,8 @@
 package com.example.berkelompokkopinako;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -17,11 +17,9 @@ public class WelcomeActivity extends AppCompatActivity {
         btnEnjoyCoffee = findViewById(R.id.btnEnjoyCoffee);
 
         btnEnjoyCoffee.setOnClickListener(v -> {
-            Toast.makeText(
-                    WelcomeActivity.this,
-                    "Lanjut ke halaman menu (dikerjakan teman)",
-                    Toast.LENGTH_SHORT
-            ).show();
+            Intent intent = new Intent(WelcomeActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
