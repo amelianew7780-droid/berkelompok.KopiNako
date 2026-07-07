@@ -34,10 +34,15 @@ public class CartActivity extends AppCompatActivity {
         tvCartItemPrice = findViewById(R.id.tvCartItemPrice);
         ivCartItem = findViewById(R.id.ivCartItem);
 
-        // Terima data
-        String namaProduk = getIntent().getStringExtra("nama_produk");
-        harga = getIntent().getIntExtra("harga", 15000);
-        int gambar = getIntent().getIntExtra("gambar", R.drawable.ic_sosisbakar);
+        // Terima data dari ProductAdapter (key disamakan: product_name, product_price, product_image)
+        String namaProduk = getIntent().getStringExtra("product_name");
+        harga = getIntent().getIntExtra("product_price", 15000);
+        int gambar = getIntent().getIntExtra("product_image", R.drawable.ic_sosisbakar);
+
+        // Jaga-jaga kalau nama produk kosong (misal CartActivity dibuka tanpa data)
+        if (namaProduk == null) {
+            namaProduk = "Produk";
+        }
 
         // Set data
         tvCartItemName.setText(namaProduk);

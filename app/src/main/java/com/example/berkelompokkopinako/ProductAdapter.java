@@ -1,6 +1,7 @@
 package com.example.berkelompokkopinako;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewDesc.setText(product.getDescription());
         holder.textViewPrice.setText("Rp " + String.format("%,d", product.getPrice()));
         holder.imageView.setImageResource(product.getImageResId());
+
+        // 🔽 Klik item produk akan mengarah ke halaman Keranjang
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CartActivity.class);
+            intent.putExtra("product_name", product.getName());
+            intent.putExtra("product_price", product.getPrice());
+            intent.putExtra("product_desc", product.getDescription());
+            intent.putExtra("product_image", product.getImageResId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
