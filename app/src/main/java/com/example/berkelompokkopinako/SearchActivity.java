@@ -47,6 +47,12 @@ public class SearchActivity extends AppCompatActivity {
 
         // Setup SearchView
         setupSearchView();
+
+        // ✅ TAMBAHAN: Ambil query dari MenuActivity (jika ada), lalu auto-search
+        String initialQuery = getIntent().getStringExtra("search_query");
+        if (initialQuery != null && !initialQuery.isEmpty()) {
+            searchView.setQuery(initialQuery, true);
+        }
     }
 
     private void loadSampleData() {

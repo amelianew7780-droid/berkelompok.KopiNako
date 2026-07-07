@@ -49,7 +49,9 @@
             android:hint="Search"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:imeOptions="actionSearch"
+            android:singleLine="true" />
     </LinearLayout>
 
     <!-- Content -->

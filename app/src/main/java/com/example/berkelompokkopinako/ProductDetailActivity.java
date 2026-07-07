@@ -72,13 +72,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         // Tombol Back
         btnBack.setOnClickListener(v -> finish());
 
-        // Add to Cart
+        // Add to Cart (key disamakan dengan CartActivity: product_name, product_price, product_image)
         btnAddToCart.setOnClickListener(v -> {
             Intent intent = new Intent(ProductDetailActivity.this, CartActivity.class);
-            intent.putExtra("nama_produk", namaProduk);
-            intent.putExtra("harga", harga);
-            intent.putExtra("gambar", gambar);
-            intent.putExtra("kategori", kategori);
+            intent.putExtra("product_name", namaProduk);
+            intent.putExtra("product_price", harga);
+            intent.putExtra("product_image", gambar);
             startActivity(intent);
 
             Toast.makeText(this, namaProduk + " ditambahkan ke keranjang!", Toast.LENGTH_SHORT).show();
