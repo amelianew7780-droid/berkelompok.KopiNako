@@ -14,7 +14,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     Button btnAddToCart;
     ImageView btnBack, ivProductImage;
-    TextView tvProductName, tvProductDescription;
+    TextView tvProductName, tvProductDescription, tvProductPrice;
     TextView tvAddOnsTitle;
     LinearLayout layoutAddOns;
 
@@ -23,23 +23,42 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
+        // Inisialisasi views
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnBack = findViewById(R.id.btnBack);
         ivProductImage = findViewById(R.id.ivProductImage);
         tvProductName = findViewById(R.id.tvProductName);
         tvProductDescription = findViewById(R.id.tvProductDescription);
+        tvProductPrice = findViewById(R.id.tvProductPrice);
         tvAddOnsTitle = findViewById(R.id.tvAddOnsTitle);
         layoutAddOns = findViewById(R.id.layoutAddOns);
 
         // Terima data dari MenuActivity
         String namaProduk = getIntent().getStringExtra("nama_produk");
+        String deskripsi = getIntent().getStringExtra("deskripsi");
         int harga = getIntent().getIntExtra("harga", 0);
-        int gambar = getIntent().getIntExtra("gambar", R.drawable.ic_sosisbakar);
+        int gambar = getIntent().getIntExtra("gambar", R.drawable.ic_coffee);
         String kategori = getIntent().getStringExtra("kategori");
 
         // Set data ke view
-        tvProductName.setText(namaProduk);
-        ivProductImage.setImageResource(gambar);
+        if (namaProduk != null) {
+            tvProductName.setText(namaProduk);
+        }
+
+        if (deskripsi != null) {
+            tvProductDescription.setText(deskripsi);
+        } else {
+            tvProductDescription.setText("Produk berkualitas tinggi");
+        }
+
+        tvProductPrice.setText("Rp " + String.format("%,d", harga));
+
+        try {
+            ivProductImage.setImageResource(gambar);
+        } catch (Exception e) {
+            // Jika gambar tidak ditemukan, gunakan default
+            ivProductImage.setImageResource(R.drawable.ic_coffee);
+        }
 
         // Sembunyikan Add Ons jika minuman
         if ("minuman".equals(kategori)) {
