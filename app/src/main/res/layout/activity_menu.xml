@@ -245,38 +245,58 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
 
-                    <LinearLayout
+                    <!-- PERUBAHAN: Ganti LinearLayout dengan FrameLayout -->
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_sosisbakar" />
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="8dp">
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="SOSIS BAKAR"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_sosisbakar" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Rp 15.000"
-                                android:textColor="#E8943A"
-                                android:textSize="11sp" />
+                                android:orientation="vertical"
+                                android:padding="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SOSIS BAKAR"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rp 15.000"
+                                    android:textColor="#E8943A"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
+
+                        <!-- TAMBAHAN: Tombol Plus di Pojok Kanan Bawah -->
+                        <ImageView
+                            android:id="@+id/btnAddSosisBakar"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_add_circle"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                    </FrameLayout>
                 </androidx.cardview.widget.CardView>
 
                 <!-- Product 2: Matcha Latte -->
@@ -289,38 +309,58 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
 
-                    <LinearLayout
+                    <!-- PERUBAHAN: Ganti LinearLayout dengan FrameLayout -->
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_matchalatte" />
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="8dp">
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="MATCHA LATTE"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_matchalatte" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Rp 20.000"
-                                android:textColor="#E8943A"
-                                android:textSize="11sp" />
+                                android:orientation="vertical"
+                                android:padding="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="MATCHA LATTE"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rp 20.000"
+                                    android:textColor="#E8943A"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
+
+                        <!-- TAMBAHAN: Tombol Plus di Pojok Kanan Bawah -->
+                        <ImageView
+                            android:id="@+id/btnAddMatchaLatte"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_add_circle"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="4dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                    </FrameLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
