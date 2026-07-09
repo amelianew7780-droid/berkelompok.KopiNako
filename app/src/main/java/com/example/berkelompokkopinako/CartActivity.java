@@ -3,8 +3,8 @@ package com.example.berkelompokkopinako;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
@@ -12,31 +12,31 @@ import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
-    // Static list untuk menyimpan semua item cart
-    public static List<CartItem> cartItems = new ArrayList<>();
-
+    // ✅ DEKLARASI VARIABEL (ini yang hilang!)
     private LinearLayout cartContainer;
     private TextView tvTotalPrice;
     private BottomNavigationView bottomNavigationView;
+
+    // Static list untuk cart
+    public static List<CartItem> cartItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        // Inisialisasi views
+        // ✅ Inisialisasi views
         cartContainer = findViewById(R.id.cartContainer);
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Cek apakah ada data dari Intent (tombol plus di MenuActivity)
+        // Cek data dari Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("product_name")) {
             String name = intent.getStringExtra("product_name");
             int price = intent.getIntExtra("product_price", 0);
             int image = intent.getIntExtra("product_image", 0);
 
-            // Cek apakah item sudah ada di cart
             boolean found = false;
             for (CartItem item : cartItems) {
                 if (item.getName().equals(name)) {
@@ -46,13 +46,11 @@ public class CartActivity extends AppCompatActivity {
                 }
             }
 
-            // Kalau belum ada, tambahkan baru
             if (!found) {
                 cartItems.add(new CartItem(name, price, image));
             }
         }
 
-        // Tampilkan semua item di cart
         displayCartItems();
 
         // Bottom Navigation
@@ -80,7 +78,6 @@ public class CartActivity extends AppCompatActivity {
         int totalPrice = 0;
 
         for (CartItem item : cartItems) {
-            // Inflate layout untuk setiap item
             android.view.View itemView = getLayoutInflater().inflate(R.layout.item_cart, cartContainer, false);
 
             ImageView ivImage = itemView.findViewById(R.id.ivProductImage);
