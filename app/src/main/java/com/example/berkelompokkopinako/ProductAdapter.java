@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,12 +39,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewPrice.setText("Rp " + String.format("%,d", product.getPrice()));
         holder.imageView.setImageResource(product.getImageResId());
 
-        // 🔽 Klik item produk akan mengarah ke halaman Keranjang
+        // 🔽 Klik item produk akan menambahkan ke cart, lalu buka CartActivity
         holder.itemView.setOnClickListener(v -> {
+            Toast.makeText(context, product.getName() + " ditambahkan ke keranjang", Toast.LENGTH_SHORT).show();
+
+            // Buka CartActivity dengan data produk
             Intent intent = new Intent(context, CartActivity.class);
             intent.putExtra("product_name", product.getName());
             intent.putExtra("product_price", product.getPrice());
-            intent.putExtra("product_desc", product.getDescription());
             intent.putExtra("product_image", product.getImageResId());
             context.startActivity(intent);
         });

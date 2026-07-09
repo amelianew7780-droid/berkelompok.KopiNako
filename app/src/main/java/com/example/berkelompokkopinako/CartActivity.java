@@ -80,12 +80,19 @@ public class CartActivity extends AppCompatActivity {
             finish();
         });
 
-        // ✅ BUTTON CHECKOUT
+        // ✅ BUTTON CHECKOUT - SUDAH DIPERBAIKI
         btnCheckout.setClickable(true);
         btnCheckout.setFocusable(true);
         btnCheckout.setOnClickListener(v -> {
-            Toast.makeText(this, "Checkout clicked - Total: " + (productPrice * quantity), Toast.LENGTH_SHORT).show();
-            // TODO: Buka halaman checkout/payment
+            int total = productPrice * quantity;
+            Toast.makeText(this, "Checkout clicked - Total: " + total, Toast.LENGTH_SHORT).show();
+
+            // ✅ TAMBAHKAN INTENT KE HALAMAN CHECKOUT/PAYMENT
+            Intent checkoutIntent = new Intent(CartActivity.this, PaymentActivity.class);
+            checkoutIntent.putExtra("total", total);
+            checkoutIntent.putExtra("product_name", productName);
+            checkoutIntent.putExtra("quantity", quantity);
+            startActivity(checkoutIntent);
         });
     }
 

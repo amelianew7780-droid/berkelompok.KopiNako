@@ -1,3 +1,12 @@
-<resources>
-    <string name="app_name">berkelompok.KopiNako</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingDefaultResource">
+
+    <!-- Existing strings - JANGAN DIHAPUS kalau ada -->
+    <string name="app_name">KopiNako</string>
+
+    <!-- Tambahkan string baru untuk bottom navigation -->
+    <string name="home">Home</string>
+    <string name="cari">Cari</string>
+    <string name="keranjang">Keranjang</string>
+    <string name="profil">Profil</string>
+
 </resources>
