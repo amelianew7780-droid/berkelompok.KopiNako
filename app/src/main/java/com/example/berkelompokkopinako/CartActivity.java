@@ -1,12 +1,12 @@
 package com.example.berkelompokkopinako;
 
-public class CartItem {
+class CartActivity {  // hapus "public"
     private String name;
     private int price;
     private int imageResId;
     private int quantity;
 
-    public CartItem(String name, int price, int imageResId) {
+    public CartActivity(String name, int price, int imageResId) {
         this.name = name;
         this.price = price;
         this.imageResId = imageResId;
