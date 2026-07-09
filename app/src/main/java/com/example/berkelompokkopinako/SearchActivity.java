@@ -62,14 +62,14 @@ public class SearchActivity extends AppCompatActivity {
         productList.add(new Product("Kopi Cappuccino", "Kopi dengan busa susu", 28000, R.drawable.ic_coffee));
         productList.add(new Product("Kopi Americano", "Kopi espresso dengan air panas", 22000, R.drawable.ic_coffee));
         productList.add(new Product("Kopi Mocha", "Kopi dengan coklat", 30000, R.drawable.ic_coffee));
-        productList.add(new Product("Matcha Latte", "Matcha dengan susu creamy", 20000, R.drawable.ic_matchalatte));
+        productList.add(new Product("Matcha Latte", "Matcha dengan susu creamy", 20000, R.drawable.ic_coffee));
 
-        // ✅ TAMBAHAN: Data Makanan
-        productList.add(new Product("Sosis Bakar", "Sosis bakar dengan saus spesial", 15000, R.drawable.ic_sosisbakar));
-        productList.add(new Product("Kentang Goreng", "Kentang goreng crispy", 18000, R.drawable.ic_kentanggoreng));
-        productList.add(new Product("Mix Platter", "Campuran snack favorit", 35000, R.drawable.ic_mixplater));
-        productList.add(new Product("Tahu Cabe Garam", "Tahu goreng dengan cabe dan garam", 12000, R.drawable.ic_tahucabegaram));
-        productList.add(new Product("Nasi Goreng", "Nasi goreng dengan telur dan ayam", 25000, R.drawable.ic_nasigoreng));
+        // Data Makanan - Menggunakan ic_coffee sementara (ganti nanti jika ada gambar)
+        productList.add(new Product("Sosis Bakar", "Sosis bakar dengan saus spesial", 15000, R.drawable.ic_coffee));
+        productList.add(new Product("Kentang Goreng", "Kentang goreng crispy", 18000, R.drawable.ic_coffee));
+        productList.add(new Product("Mix Platter", "Campuran snack favorit", 35000, R.drawable.ic_coffee));
+        productList.add(new Product("Tahu Cabe Garam", "Tahu goreng dengan cabe dan garam", 12000, R.drawable.ic_coffee));
+        productList.add(new Product("Nasi Goreng", "Nasi goreng dengan telur dan ayam", 25000, R.drawable.ic_coffee));
 
         filteredList.addAll(productList);
     }

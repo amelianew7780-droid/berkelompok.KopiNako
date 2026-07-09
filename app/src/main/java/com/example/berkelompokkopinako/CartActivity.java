@@ -1,98 +1,30 @@
 package com.example.berkelompokkopinako;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+public class CartItem {
+    private String name;
+    private int price;
+    private int imageResId;
+    private int quantity;
 
-public class CartActivity extends AppCompatActivity {
-
-    Button btnCheckout, btnTambahPesanan, btnPlus, btnMinus;
-    ImageView btnBackToMenu, btnRemove;
-    TextView tvQuantity, tvTotal, tvCartItemName, tvCartItemPrice;
-    ImageView ivCartItem;
-
-    int quantity = 1;
-    int harga = 15000;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
-
-        btnCheckout = findViewById(R.id.btnCheckout);
-        btnTambahPesanan = findViewById(R.id.btnTambahPesanan);
-        btnBackToMenu = findViewById(R.id.btnBackToMenu);
-        btnPlus = findViewById(R.id.btnPlus);
-        btnMinus = findViewById(R.id.btnMinus);
-        btnRemove = findViewById(R.id.btnRemove);
-        tvQuantity = findViewById(R.id.tvQuantity);
-        tvTotal = findViewById(R.id.tvTotal);
-        tvCartItemName = findViewById(R.id.tvCartItemName);
-        tvCartItemPrice = findViewById(R.id.tvCartItemPrice);
-        ivCartItem = findViewById(R.id.ivCartItem);
-
-        // Terima data dari ProductAdapter (key disamakan: product_name, product_price, product_image)
-        String namaProduk = getIntent().getStringExtra("product_name");
-        harga = getIntent().getIntExtra("product_price", 15000);
-        int gambar = getIntent().getIntExtra("product_image", R.drawable.ic_sosisbakar);
-
-        // Jaga-jaga kalau nama produk kosong (misal CartActivity dibuka tanpa data)
-        if (namaProduk == null) {
-            namaProduk = "Produk";
-        }
-
-        // Set data
-        tvCartItemName.setText(namaProduk);
-        tvCartItemPrice.setText(harga / 1000 + "K");
-        ivCartItem.setImageResource(gambar);
-        updateTotal();
-
-        // Back to Menu
-        btnBackToMenu.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, MenuActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        // Tambah Pesanan
-        btnTambahPesanan.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, MenuActivity.class);
-            startActivity(intent);
-        });
-
-        // Plus quantity
-        btnPlus.setOnClickListener(v -> {
-            quantity++;
-            tvQuantity.setText(String.valueOf(quantity));
-            updateTotal();
-        });
-
-        // Minus quantity
-        btnMinus.setOnClickListener(v -> {
-            if (quantity > 1) {
-                quantity--;
-                tvQuantity.setText(String.valueOf(quantity));
-                updateTotal();
-            }
-        });
-
-        // Remove item
-        btnRemove.setOnClickListener(v -> {
-            finish();
-        });
-
-        // Checkout
-        btnCheckout.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
-            intent.putExtra("total", harga * quantity);
-            startActivity(intent);
-        });
+    public CartItem(String name, int price, int imageResId) {
+        this.name = name;
+        this.price = price;
+        this.imageResId = imageResId;
+        this.quantity = 1;
     }
 
-    private void updateTotal() {
-        tvTotal.setText((harga * quantity / 1000) + "K");
+    public String getName() { return name; }
+    public int getPrice() { return price; }
+    public int getImageResId() { return imageResId; }
+    public int getQuantity() { return quantity; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void increaseQuantity() { this.quantity++; }
+    public void decreaseQuantity() {
+        if (this.quantity > 1) this.quantity--;
+    }
+
+    public int getTotalPrice() {
+        return price * quantity;
     }
 }
