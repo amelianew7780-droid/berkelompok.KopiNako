@@ -1,30 +1,102 @@
 package com.example.berkelompokkopinako;
 
-class CartActivity {  // hapus "public"
-    private String name;
-    private int price;
-    private int imageResId;
-    private int quantity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.LinearLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.util.ArrayList;
+import java.util.List;
 
-    public CartActivity(String name, int price, int imageResId) {
-        this.name = name;
-        this.price = price;
-        this.imageResId = imageResId;
-        this.quantity = 1;
+public class CartActivity extends AppCompatActivity {
+
+    // Static list untuk menyimpan semua item cart
+    public static List<CartItem> cartItems = new ArrayList<>();
+
+    private LinearLayout cartContainer;
+    private TextView tvTotalPrice;
+    private BottomNavigationView bottomNavigationView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cart);
+
+        // Inisialisasi views
+        cartContainer = findViewById(R.id.cartContainer);
+        tvTotalPrice = findViewById(R.id.tvTotalPrice);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Cek apakah ada data dari Intent (tombol plus di MenuActivity)
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("product_name")) {
+            String name = intent.getStringExtra("product_name");
+            int price = intent.getIntExtra("product_price", 0);
+            int image = intent.getIntExtra("product_image", 0);
+
+            // Cek apakah item sudah ada di cart
+            boolean found = false;
+            for (CartItem item : cartItems) {
+                if (item.getName().equals(name)) {
+                    item.increaseQuantity();
+                    found = true;
+                    break;
+                }
+            }
+
+            // Kalau belum ada, tambahkan baru
+            if (!found) {
+                cartItems.add(new CartItem(name, price, image));
+            }
+        }
+
+        // Tampilkan semua item di cart
+        displayCartItems();
+
+        // Bottom Navigation
+        bottomNavigationView.setSelectedItemId(R.id.navigation_cart);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_home) {
+                startActivity(new Intent(this, MenuActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_search) {
+                startActivity(new Intent(this, SearchActivity.class));
+                return true;
+            } else if (itemId == R.id.navigation_cart) {
+                return true;
+            } else if (itemId == R.id.navigation_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            }
+            return false;
+        });
     }
 
-    public String getName() { return name; }
-    public int getPrice() { return price; }
-    public int getImageResId() { return imageResId; }
-    public int getQuantity() { return quantity; }
+    private void displayCartItems() {
+        cartContainer.removeAllViews();
+        int totalPrice = 0;
 
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-    public void increaseQuantity() { this.quantity++; }
-    public void decreaseQuantity() {
-        if (this.quantity > 1) this.quantity--;
-    }
+        for (CartItem item : cartItems) {
+            // Inflate layout untuk setiap item
+            android.view.View itemView = getLayoutInflater().inflate(R.layout.item_cart, cartContainer, false);
 
-    public int getTotalPrice() {
-        return price * quantity;
+            ImageView ivImage = itemView.findViewById(R.id.ivProductImage);
+            TextView tvName = itemView.findViewById(R.id.tvProductName);
+            TextView tvPrice = itemView.findViewById(R.id.tvProductPrice);
+            TextView tvQuantity = itemView.findViewById(R.id.tvQuantity);
+
+            ivImage.setImageResource(item.getImageResId());
+            tvName.setText(item.getName());
+            tvPrice.setText("Rp " + item.getTotalPrice());
+            tvQuantity.setText("x" + item.getQuantity());
+
+            totalPrice += item.getTotalPrice();
+            cartContainer.addView(itemView);
+        }
+
+        tvTotalPrice.setText("Total: Rp " + totalPrice);
     }
 }

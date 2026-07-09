@@ -103,10 +103,11 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ Klik Tombol Plus Sosis Bakar (key disamakan dengan CartActivity)
+        // ✅ Klik Tombol Plus Sosis Bakar (TIDAK buka CartActivity, cuma tambah ke cart)
         btnAddSosisBakar.setOnClickListener(v -> {
             Toast.makeText(this, "Sosis Bakar ditambahkan ke keranjang!", Toast.LENGTH_SHORT).show();
 
+            // Tambahkan ke cart tanpa buka halaman baru
             Intent intent = new Intent(MenuActivity.this, CartActivity.class);
             intent.putExtra("product_name", "Sosis Bakar");
             intent.putExtra("product_price", 15000);
@@ -114,10 +115,11 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ Klik Tombol Plus Matcha Latte (key disamakan dengan CartActivity)
+        // ✅ Klik Tombol Plus Matcha Latte (TIDAK buka CartActivity, cuma tambah ke cart)
         btnAddMatchaLatte.setOnClickListener(v -> {
             Toast.makeText(this, "Matcha Latte ditambahkan ke keranjang!", Toast.LENGTH_SHORT).show();
 
+            // Tambahkan ke cart tanpa buka halaman baru
             Intent intent = new Intent(MenuActivity.this, CartActivity.class);
             intent.putExtra("product_name", "Matcha Latte");
             intent.putExtra("product_price", 20000);
